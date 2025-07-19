@@ -1,26 +1,14 @@
-#include <iostream>
-#include <string>
+#include<iostream>
+#include<string>
 using namespace std;
-
-int main()
-{
-    int n;
-    cin >> n;
-    string str[n];
-    for (int i = 0; i < n; i++)
-    {
-        cin >> str[i];
-        int len = str[i].length();
-
-        if (len <= 10)
-        {
-            cout << str[i] << endl;
-        }
-        else
-        {
-            cout << str[i][0] << len - 2 << str[i][len - 1] << endl;
-        }
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+    string str;
+    cin>>str;
+    if(str.length()>10)cout<<str[0]<<(str.length()-2)<<str[str.length()-1]<<"\n";
+    else cout<<str<<"\n";
     }
-
     return 0;
 }

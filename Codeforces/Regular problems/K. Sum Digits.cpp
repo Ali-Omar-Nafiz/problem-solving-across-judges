@@ -1,16 +1,12 @@
-#include<iostream>
-#include<string>
+#include<bits/stdc++.h>
 using namespace std;
-int main()
-{
-    int n,count=0;
-    cin>>n;
-    string arr;
-    cin>>arr;
-    for(int i=0; i<n; i++)
-    {
-        count+=arr[i]-'0';
+int main(){
+    string input;
+    int rubish,sum=0;
+    cin>>rubish>>input;
+    for(char c:input){
+        sum+=(c-'0');
     }
-    cout<<count;
+    cout<<sum;
     return 0;
 }
