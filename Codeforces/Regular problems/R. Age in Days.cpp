@@ -1,14 +1,15 @@
-#include<iostream>
+#include<bits/stdc++.h>
+
 using namespace std;
-int main()
-{
-    int input,year,month,day;
-    cin>>input;
-    year=input/365;
-    month=(input-year*365)/30;
-    day=(input-year*365-month*30);
-    cout<<year<<" years"<<endl;
-    cout<<month<<" months"<<endl;
-    cout<<day<<" days"<<endl;
-    return 0;
+int main() {
+    int ageInDays; cin >> ageInDays;
+    int years = ageInDays / 365;
+    cout << years << " years\n";
+
+    ageInDays %= 365;
+    int months = ageInDays / 30;
+    cout << months << " months\n";
+
+    ageInDays %= 30;
+    cout << ageInDays << " days";
 }
