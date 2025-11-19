@@ -1,0 +1,118 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+
+const int M = 1e5;
+const int M2 = 2e5;
+const int OO = 1e9 + 7;
+const ll MOD = 998244353;
+const double PI = 2 * acos(0.0);
+
+#define testcase int tc; cin >> tc; for (int i = 1; i <= tc; i++)
+#define nline "\n"
+#define all(v) v.begin(), v.end()
+// #define int long long
+
+void io() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+}
+
+ll ceilDiv(ll a, ll b) {
+    return (a + b - 1) / b;
+}
+
+double logBase(double a, double b) {
+    return log2(a) / log2(b);
+}
+
+ll gcd(ll a, ll b) {
+    return b == 0 ? a : gcd(b, a % b);
+}
+
+ll lcm(ll a, ll b) {
+    return (a / gcd(a, b)) * b;
+}
+
+ll stringToLL(const string& s) {
+    ll i = 0, ret = 0;
+    bool neg = false;
+    if (s[0] == '-') {
+        neg = true;
+        i = 1;
+    }
+    for (; i < (ll)s.size(); i++) {
+        ret = ret * 10 + (s[i] - '0');
+    }
+    return neg ? -ret : ret;
+}
+
+int countDigits(ll n) {
+    n = abs(n);
+    if (n == 0) return 1;
+    return (int)log10(n) + 1;
+}
+
+int isPowerOfTwo(int b) {
+    if (b == 0) {
+        return 0;
+    } else if ((b & (b - 1)) == 0) {
+        return 1;
+    } else
+        return 0;
+}
+
+void solve() {
+    int m, n;
+    cin >> m >> n;
+    map < string, int > country;
+    map < string, int > chef;
+    map < string, string > both;
+    for (int i = 0; i < m; i++) {
+        string one, two;
+        cin >> one >> two;
+        both[one] = two;
+    }
+    for (int i = 0; i < n; i++) {
+        string one;
+        cin >> one;
+        country[both[one]]++;
+        chef[one]++;
+    }
+    int max = INT_MIN;
+    for (auto x : country) {
+        if (x.second > max) {
+            max = x.second;
+        }
+    }
+    set < string > st;
+    for (auto x : country) {
+        if (x.second == max) {
+            st.insert(x.first);
+        }
+    }
+    int mx = INT_MIN;
+    for (auto x : chef) {
+        if (x.second > mx) {
+            mx = x.second;
+        }
+    }
+    set < string > st2;
+    for (auto x : chef) {
+        if (x.second == mx) {
+            st2.insert(x.first);
+        }
+    }
+    cout << *(st.begin()) << nline;
+    cout << *(st2.begin()) << nline;
+}
+
+int main() {
+    io();
+    // testcase
+        solve();
+    return 0;
+}
+
