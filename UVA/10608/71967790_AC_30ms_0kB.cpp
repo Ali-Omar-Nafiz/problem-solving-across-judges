@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define FAST_IO ios_base::sync_with_stdio(false); cin.tie(nullptr)
+#define endl '\n'
+#define int long long
+
+vector < set < int > > adjList;
+vector < bool > vis;
+
+int dfs(int cur) {
+    vis[cur] = true;
+    int cnt = 1;
+    for (auto x: adjList[cur]) {
+        if (!vis[x]) {
+            cnt += dfs(x);
+        }
+    }
+    return cnt;
+}
+
+void solve() {
+    int n, m;
+    cin  >> n >> m;
+    adjList.assign(n + 1, {});
+    for (int i = 0; i < m; i++) {
+        int u, v;
+        cin >> u >> v;
+        adjList[u].insert(v);
+        adjList[v].insert(u);
+    }
+    vis.assign(n + 1, false);
+    int ans = INT_MIN;
+    for (int i = 1; i <= n; i++) {
+        if (!vis[i]) {
+            ans = max(ans, dfs(i));
+        }
+    }
+    cout << ans << endl;
+}
+
+signed main() {
+    FAST_IO;
+    int t = 1;
+    cin >> t;
+    for (int i = 1; i <= t; i++) {
+        // cout << "Case " << i << ": ";
+        solve();
+    }
+    return 0;
+}
